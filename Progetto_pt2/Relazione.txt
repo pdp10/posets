@@ -1,0 +1,144 @@
+
+Relazione del progetto di Programmazione 2. Anno 2003/2004
+Piero Dalle Pezze - matricola 486228
+Descrizione dei metodi.
+(Ulteriore descrizione e' presente su Aiuto del menu grafico del Progetto)
+
+
+
+CLASSE INSIEME
+
+- int size() const
+Ritorna il numero di elementi di un insieme di invocazione.
+
+- bool empty() const
+Testa se l'insieme di invocazione e' vuoto.
+
+- bool see(T) const
+Testa se l'elemento di tipo T e' presente nell'insieme di invocazione.
+
+- bool sottoinsieme(const Insieme<T>&) const
+Testa se l'insieme passato come paramentro contiene elementi (di tipo T) presenti nell'insieme di invocazione.
+
+
+
+CLASSE RELAZIONE 
+
+- void remove_trans_closure() 
+Inserisce in un insieme chiamato delete, tutte le coppie della chiusura transitiva della relazione di invocazione. Poi rimuove da questa tutte quelle coppie.
+
+- void remove_reflex_closure() 
+Rimuove tutte le coppie della chiusura riflessiva.
+
+- Funzioni post, post_, pred, pred_
+Restituiscono l'insieme dei successori/successori propri/predecessori/predecessori propri sull'insieme di invocazione di un char. 
+
+- Funzioni post2, post2_, pred2, pred2_
+Restituiscono l'insieme dei successori/successori propri/predecessori/predecessori propri sull'insieme di invocazione di un Insieme<char>. 
+
+- bool acyclic()
+Per ogni coppia k dell'Insieme<Coppia<char> > della relazione di invocazione, in un insieme S si pongono i successori propri della prima componente della coppia k. Ora per ogni elemento di S si trovano i rispettivi successori e questi vengono poi inseriti in S stesso. Infine, si testa se la prima componente della coppia k e' presente in S. Se non e' presente, allora la relazione non contiene un ciclo per quella componente.
+
+
+
+CLASSE POSET
+
+- Costruttore
+Testa se la Relazione e' aciclica. In caso affermativo copia la relazione e la chiude riflessivamente e transitivamente.
+
+- Insieme<char> massimali(const Insieme<char>&) const 
+Per ogni elemento k del Insieme<char> passato come parametro S, calcola l'insieme dei suoi successori succ_k. Se esiste almeno 1 elemento di S, eccetto k stesso, che compare in succ_k, allora k non e' massimale, altrimenti lo e'.
+
+- Insieme<char> minimali(const Insieme<char>&) const 
+Per ogni elemento k del Insieme<char> passato come parametro S, calcola l'insieme dei suoi predecessori pred_k. Se esiste almeno 1 elemento di S, eccetto k stesso, che compare in pred_k, allora k non e' minimale, altrimenti lo e'.
+
+- Insieme<char> massimali() const 
+Per ogni elemento del dominio si verifica se esso e' presente come primo elemento della coppia dell'Insieme<Coppia<char> > relazione del Poset, ad esclusione delle coppie riflessive. Se e' presente, non e' un massimale, altrimenti lo e'. 
+
+- Insieme<char> minimali() const 
+Per ogni elemento del dominio si verifica se esso e' presente come secondo elemento della coppia dell'Insieme<Coppia<char> > del Poset, ad esclusione delle coppie riflessive. Se e' presente, non e' un minimale, altrimenti lo e'. 
+
+- Relazione copertura() const
+Dal Poset di invocazione, viene creata una relazione e si rimuove in questa le chiusure riflessiva e transitiva. Tale relazione sara' la relazione di copertura.
+
+- int livello() const
+Considerati l'insieme dei minimali e del dominio del Poset di invocazione, si testa se il primo e' vuoto. In tal caso si esegue un ciclo, finche' l'insieme dei minimali non e' vuoto, nel quale all'insieme di dominio, si sottraggono i minimali trovati, e l'insieme dei minimali diviene l'insieme dei minimali nel nuovo dominio. Ad ogni ciclo il contatore di livelli, si incrementa. In breve si va dal basso verso l'alto nel poset, accorciando il dominio dell'insieme dei minimali trovato.
+
+- Insieme<char> livello(const int&) const
+Come prima soltanto che il ciclo puo' terminare se il contatore di livelli diventa uguale al parametro passato. In tal caso in un opportuno insieme viene copiato l'insieme dei minimali, che comprendera' quindi i minimali di quel livello.
+
+- bool catena() const
+Testa se l'insieme di dominio del Poset di invocazione e' uguale al numero di livelli dello stesso. In tal caso il Poset e' una Catena.
+
+
+
+CLASSE CATENA
+
+- Costruttori
+Testano se il Poset creato dalla Relazione passata come parametro, o il Poset stesso se passato come parametro, sono catene. In tal caso copiano i campi dati e chiudono riflessivamente e transitivamente.
+
+- Insieme<char> massimali(const Insieme<char>&) const 
+Come su Poset, ma ottimizzato, in quanto si arresta appena trovato un massimale.
+
+- Insieme<char> minimali(const Insieme<char>&) const 
+Come su Poset, ma ottimizzato, in quanto si arresta appena trovato un minimale.
+
+- char top() const 
+Come massimali di Poset, ma ottimizzato, in quanto si arresta appena trovato un massimale.
+
+- char bottom() const 
+Come minimali di Poset, ma ottimizzato, in quanto si arresta appena trovato un minimale.
+
+- Insieme<char> massimali() const 
+Invoca il metodo top() e aggiunge il char ritornato ad un Insieme<char>. Questo poi sara' l'oggetto di ritorno del metodo massimali() invocato.
+
+- Insieme<char> minimali() const 
+Invoca il metodo bottom() e aggiunge il char ritornato ad un Insieme<char>. Questo poi sara' l'oggetto di ritorno del metodo minimali() invocato.
+
+- int livello() const
+Ritorna il numero di elementi del dominio della Catena di invocazione.
+
+
+- Relazione copertura() const
+Dal Poset di invocazione, viene creata una relazione e si rimuove in questa le chiusure riflessiva e transitiva. Tale relazione sara' la relazione di copertura.
+
+- int livello() const
+Considerati l'insieme dei minimali e del dominio del Poset di invocazione, si testa se il primo e' vuoto. In tal caso si esegue un ciclo, finche' l'insieme dei minimali non e' vuoto, nel quale all'insieme di dominio, si sottraggono i minimali trovati, e l'insieme dei minimali diviene l'insieme dei minimali nel nuovo dominio. Ad ogni ciclo il contatore di livelli, si incrementa. In breve si va dal basso verso l'alto nel poset, accorciando il dominio dell'insieme dei minimali trovato.
+
+- Insieme<char> livello(const int&) const
+Come prima soltanto che il ciclo puo' terminare se il contatore di livelli diventa uguale al parametro passato. In tal caso in un opportuno insieme viene copiato l'insieme dei minimali, che comprendera' quindi i minimali di quel livello.
+
+- bool catena() const
+Testa se l'insieme di dominio del Poset di invocazione e' uguale al numero di livelli dello stesso. In tal caso il Poset e' una Catena.
+
+
+
+CLASSE TEMP (E' una classe per il parsing delle stringhe di input, per la generazione di Insiemi da queste stringhe e per l'output in stringa di Insiemi. Essa quindi e' un legame tra il programma e la sua interfaccia grafica.)
+
+- Insieme<Coppia<char> > create_str(const string&) 
+Da una stringa data nella sintassi {(char,char),(char,char),...,(char,char)}, provvede a trasformare le coppie (char,char) in oggetti di tipo Coppia<char> e ad inserire queste in un Insieme<Coppia<char> > che sara' poi ritornato dal metodo. Tale metodo e' preceduto sempre da bool parsing(const string&).
+
+- Insieme<char> create_I_str(const string&)
+Da una stringa data nella sintassi {char,char,...,char}, provvede ad inserire i char in un Insieme<char> che sara' poi ritornato dal metodo. Tale metodo e' preceduto sempre da bool parsing_I(const string&).
+
+- int somma(int*, int)  
+Il primo parametro e' un array dinamico in cui sono inserite le cifre di un numero. Ad esempio 132 e' suddiviso nell'array in questo modo A[0] = 1, A[1] = 3, A[2] = 2 . Il secondo parametro invece e' il numero di cifre del numero. In questo caso e' passato 3. Il metodo quindi compone un numero da un array che ne contiene le cifre.
+
+- void calcola(int *, char, int&) 
+Questo metodo trasforma il char passato(numero) nel rispettivo numero in int, e lo inserisce nell'array (primo parametro). Il terzo parametro indica la posizione in cui va inserito il numero trasformato nell'array. 
+
+- int create_single(const string&)
+Il metodo trasforma una stringa data nella sintassi {abc...z} dove abc...z sono char numerici compresi tra '0' e '9', nel numero int corrispondente, richiamando oppurtunamente i metodi void calcola(int*, char, int&) e int somma(int*, int). Tale metodo e' sempre preceduto da bool parsing_single(const string&) ).
+
+- bool parsing(const string& str) 
+Testa che la stringa passata abbia la sintassi {(char,char),(char,char),...,(char,char)}.
+
+- bool parsing_I(const string& str) 
+Testa che la stringa passata abbia la sintassi {char,char,...,char}.
+
+- bool parsing_single(const string& str) 
+Testa che la stringa passata abbia la sintassi {abc...z}, dove abc...z sono char compresi tra '0' e '9'.
+
+- const char* print(Relazione*)
+Unico metodo di output della classe Temp. Copia di Insieme<Coppia<char> > della Relazione* passata, e su questa chiama il metodo write() di Insieme, il quale trasforma tale Insieme<Coppia<char> > in una stringa. Questa sara' poi restituita come parametro di ritorno al chiamante. 
+

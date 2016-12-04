@@ -1,0 +1,28 @@
+
+stud. PIERO DALLE PEZZE  mat. 486228   
+
+
+RELAZIONE DELLA PRIMA PARTE DEL PROGETTO DI PROGRAMMAZIONE 2
+
+
+
+
+Il Progetto si articola nelle seguenti quattro classi:
+
+1) Classe Coppia
+Essa comprende come richiesto i 2 costruttori e l'overloading degli operatori ==, !=, <<. Ho inserito inoltre 2 metodi read1() e read2() che ritornano rispettivamente il primo e il secondo elemento della coppia. 
+
+2) Classe Insieme_int
+La classe e' stata realizzata con la tecnica della condivisione controllata della memoria. Sono state definite quindi due classi annidate alla classe Insieme_int, smartp e nodo, per la gestione della lista. Un oggetto Insieme_int e' infatti composto da una lista i cui nodi sono costituiti da numeri (ovviamente poi ci sono i campi nodo* e reference, gestito dalla classe smartp). In questa classe ho introdotto per comodita' due metodi size() e see(). Il primo ritorna il numero di elementi di un insieme. L'ho inserito per velocizzare l'uscita in un test di uguaglianza o disuguaglianza tra insiemi. Se due insiemi hanno dimensioni diverse l'overloading== ritorna immediatamente false, mentre l'overloading!= ritorna subito true. 
+Il secondo metodo see() invece ritorna true se un numero e' presente nell'insieme, false altrimenti o se l'insieme e' vuoto.
+
+3) Classe Insieme_Coppia 
+E' praticamente identica alla classe Insieme_int solo che i nodi hanno come campo di informazione oggetti di tipo Coppia e non numeri. Sono state modificate apropriatamente i metodi affinche' possano ricevere come parametri formali oggetti sempre di tipo Coppia e non interi. 
+
+4) Classe Relazione
+Ho dichiarato la classe Relazione friend delle classi Insieme_int e Insieme_Coppia, in modo che possa interagire direttamente con i metodi di queste due classi. Le specifiche per questa classe sono quelle richieste e non sono stati dichiarati ulteriori metodi. 
+ 
+
+
+Inoltre:
+Ho inserito la copia del main_minimale messo a disposizione sul sito. In particolare l'ho inserito come dipendenza nel Makefile. 
