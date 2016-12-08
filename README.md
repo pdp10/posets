@@ -1,6 +1,6 @@
 # Posets
 
-Summary: Representation and operations on partial ordered sets (posets)
+Summary: representation and operations on partial ordered sets (posets)
 
 Author: Piero Dalle Pezze
 
